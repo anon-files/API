@@ -14,11 +14,13 @@
 
 <script src="https://cdn.jsdelivr.net/gh/anon-files/API@main/api.js"></script>
 <script>
-    document.querySelector('#test').onsubmit = async function(event) {
+    document.querySelector('form').onsubmit = async function(event) {
         event.preventDefault();
         var input = document.querySelector('input[type="file"]');
         let data = await upload(input.files[0]);
-        console.log(data);
+        let element = document.createElement('p');
+        p.innerText = JSON.stringify(data);
+        document.body.appendChild(p);
     }
 </script>
 
