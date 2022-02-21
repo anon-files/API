@@ -15,10 +15,7 @@ A CORS proxy is required for this API to function in the browser.
 npm install anonfiles
 ```
 
-CommonJS
-```js
-const AnonFiles = require('anonfiles');
-```
+AnonFiles is an ES module
 
 ES6 Imports
 ```js
