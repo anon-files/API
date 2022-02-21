@@ -1,0 +1,27 @@
+{
+  "name": "anonfiles",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "An unofficial JavaScript API wrapper for AnonFiles.",
+  "main": "index.js",
+  "directories": {
+    "example": "examples"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/anon-files/API"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/anon-files/API/issues"
+  },
+  "homepage": "https://github.com/anon-files/API#readme",
+  "dependencies": {
+    "form-data": "^4.0.0",
+    "node-fetch": "^3.2.0"
+  }
+}

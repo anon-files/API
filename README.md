@@ -5,17 +5,36 @@ An unofficial JavaScript AnonFiles API wrapper.
 ### Browser
 Add the following code to your HTML file.
 ```html
-<script src="https://cdn.jsdelivr.net/gh/anon-files/API@main/api.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/anon-files/API@main/dist/api.min.js"></script>
 ```
 
-### Node.js/Deno
-This wrapper is designed specifically for the browser. However, it could still work on Node.js/Deno with some modules.
+A CORS proxy is required for this API to function in the browser.
 
-## API
-### get(id)
-Gets info about a file
+### Node.js
+```
+npm install anonfiles
+```
+
+CommonJS
 ```js
-let info = await get(id);
+const AnonFiles = require('anonfiles');
+```
+
+ES6 Imports
+```js
+import AnonFiles from 'anonfiles';
+```
+
+## Browser API
+#### get(id, proxyUrl)
+Gets info about a file.
+
+In order to bypass CORS in the browser, a CORS proxy is used for all requests.
+
+You can use your own CORS proxy by passing it in the `proxyUrl` parameter.
+
+```js
+let info = await get(id, 'https://cors.bridged.cc');
 console.log(info);
 ```
 
@@ -25,10 +44,15 @@ let info = await get('u1C0ebc4b0');
 console.log(info);
 ```
 
-### upload(file)
+#### upload(file, proxyUrl)
 Uploads a file to AnonFiles
+
+In order to bypass CORS in the browser, a CORS proxy is used for all requests.
+
+You can use your own CORS proxy by passing it in the `proxyUrl` parameter.
+
 ```js
-let response = await upload(file);
+let response = await upload(file, 'https://cors.bridged.cc');
 ```
 
 Example Request
@@ -40,6 +64,36 @@ console.log(response);
 ```
 
 A more detailed example can be found in the **[examples](https://github.com/anon-files/API/tree/main/examples)** folder.
+
+#### Warning
+If you are going to use this API in the browser, it is recommended that you use your own CORS proxy to prevent security risks.
+
+For instructions on setting up your own CORS proxy, see https://github.com/Rob--W/cors-anywhere#demo-server
+
+## Node.js API
+#### get(id)
+Gets info about a file.
+```js
+var info = await get(id);
+```
+
+#### upload(path)
+Uploads a file to AnonFiles
+```js
+var response = await upload(path);
+```
+
+#### Example
+Example Usage
+```js
+const API = AnonFiles();
+
+var info = await API.get('u1C0ebc4b0');
+console.log(info);
+
+var response = await API.upload('./file.txt');
+console.log(response);
+```
 
 ## License
 ```
