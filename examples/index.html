@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<form>
+  <div>
+    <label for="file">Choose file to upload</label>
+    <input type="file" name="file">
+  </div>
+  <div>
+    <button>Submit</button>
+  </div>
+</form>
+
+<script src="https://cdn.jsdelivr.net/gh/anon-files/API@main/api.js"></script>
+<script>
+    document.querySelector('#test').onsubmit = async function(event) {
+        event.preventDefault();
+        var input = document.querySelector('input[type="file"]');
+        let data = await upload(input.files[0]);
+        console.log(data);
+    }
+</script>
+
+</body>
+</html>
