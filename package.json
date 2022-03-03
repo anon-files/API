@@ -1,6 +1,6 @@
 {
   "name": "anonfiles",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "type": "module",
   "description": "An unofficial JavaScript API wrapper for AnonFiles.",
   "main": "index.js",
