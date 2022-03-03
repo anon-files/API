@@ -83,7 +83,7 @@ var response = await upload(path);
 #### Example
 Example Usage
 ```js
-const API = AnonFiles();
+const API = new AnonFiles();
 
 var info = await API.get('u1C0ebc4b0');
 console.log(info);
