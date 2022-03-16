@@ -43,5 +43,5 @@ function extractFileName(websiteData) {
     return websiteData.match(/text-center text-wordwrap">[^<]+/)[0].replace('text-center text-wordwrap">', '');
 }
 
-const AnonFiles = { get, upload, download };
+const AnonFiles = { get, upload, download, extractRawURL, extractFileName };
 export default AnonFiles;
