@@ -1,95 +1,54 @@
-# API
+# AnonFiles API
 An unofficial JavaScript AnonFiles API wrapper.
 
 ## Usage
-### Browser
-Add the following code to your HTML file.
-```html
-<script src="https://cdn.jsdelivr.net/gh/anon-files/API@main/dist/api.min.js"></script>
-```
-
-A CORS proxy is required for this API to function in the browser.
-
-### Node.js
 ```
 npm install anonfiles
 ```
 
-AnonFiles is an ES module
-
-ES6 Imports
 ```js
 import AnonFiles from 'anonfiles';
 ```
 
-## Browser API
-#### get(id, proxyUrl)
-Gets info about a file.
-
-In order to bypass CORS in the browser, a CORS proxy is used for all requests.
-
-You can use your own CORS proxy by passing it in the `proxyUrl` parameter.
-
-```js
-let info = await get(id, 'https://cors.bridged.cc');
-console.log(info);
-```
-
-Example Request
-```js
-let info = await get('u1C0ebc4b0');
-console.log(info);
-```
-
-#### upload(file, proxyUrl)
-Uploads a file to AnonFiles
-
-In order to bypass CORS in the browser, a CORS proxy is used for all requests.
-
-You can use your own CORS proxy by passing it in the `proxyUrl` parameter.
-
-```js
-let response = await upload(file, 'https://cors.bridged.cc');
-```
-
-Example Request
-```js
-var input = document.querySelector('input[type="file"]');
-var response = await upload(input.files[0]);
-
-console.log(response);
-```
-
-A more detailed example can be found in the **[examples](https://github.com/anon-files/API/tree/main/examples)** folder.
-
-#### Warning
-If you are going to use this API in the browser, it is recommended that you use your own CORS proxy to prevent security risks.
-
-For instructions on setting up your own CORS proxy, see https://github.com/Rob--W/cors-anywhere#demo-server
-
-## Node.js API
-#### get(id)
+## API
+### get(id)
 Gets info about a file.
 ```js
 var info = await get(id);
 ```
 
-#### upload(path)
+### upload(path)
 Uploads a file to AnonFiles
 ```js
 var response = await upload(path);
 ```
 
-#### Example
-Example Usage
+### download(id, targetDir)
+Downloads a file from AnonFiles
 ```js
-const API = new AnonFiles();
+await download(id, './Downloads');
+```
 
-var info = await API.get('u1C0ebc4b0');
+### extractRawURL(id)
+Extracts the raw download link for a file
+```js
+extractRawURL(id);
+```
+
+### Example
+```js
+import AnonFiles from 'anonfiles';
+
+var info = await AnonFiles.get('u1C0ebc4b0');
 console.log(info);
 
-var response = await API.upload('./file.txt');
+var response = await AnonFiles.upload('./file.txt');
 console.log(response);
+
+await AnonFiles.download('u1C0ebc4b0', './Downloads/file.zip');
+
+var url = AnonFiles.extractRawURL('u1C0ebc4b0');
+console.log(url);
 ```
 
 ## License
