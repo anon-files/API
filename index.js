@@ -37,11 +37,19 @@ async function download(fileURL, path) {
     });
 }
 
-function extractRawURL(websiteData) {
-    return websiteData.match(/https:\/\/cdn-[0-9]{3}.anonfiles.com\/[aA-zZ0-9]+\/[aA-zZ0-9]+-[aA-zZ0-9]+\/[^"]+/)[0];
+function extractRawURL(id, domain) {
+    const urlData = await get(id, domain);
+    const url = urlData['data']['file']['url']['full'];
+    const response = await fetch(url);
+    const websiteData = await response.text();
+    return websiteData.match(/https:\/\/cdn-[0-9]{3}.(anonfiles\.com|filechan\.org|hotfile\.io|letsupload\.cc|lolabits\.se|megaupload\.nz|myfile\.is|rapidshare\.nu|share-online\.is|upvid\.cc|vshare\.is)\/[aA-zZ0-9]+\/[aA-zZ0-9]+-[aA-zZ0-9]+\/[^"]+/)[0];
 }
 
-function extractFileName(websiteData) {
+function extractFileName(id, domain) {
+    const urlData = await get(id, domain);
+    const url = urlData['data']['file']['url']['full'];
+    const response = await fetch(url);
+    const websiteData = await response.text();
     return websiteData.match(/text-center text-wordwrap">[^<]+/)[0].replace('text-center text-wordwrap">', '');
 }
 

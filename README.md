@@ -10,17 +10,35 @@ npm install anonfiles
 import AnonFiles from 'anonfiles';
 ```
 
-## API
-### get(id)
-Gets info about a file.
-```js
-var info = await get(id);
+## Domain id list
+```
+0 — anonfiles.com
+1 — filechan.org
+2 — hotfile.io
+3 — letsupload.cc
+4 — lolabits.se
+5 — megaupload.nz
+6 — myfile.
+8 — share-online.is
+9 — upvid.cc
+10 — vshare.is
 ```
 
-### upload(path)
-Uploads a file to AnonFiles
+## API
+### get(id, domain)
+Gets info about a file.
+
+Domain is the website domain id.
 ```js
-var response = await upload(path);
+var info = await get(id, 0);
+```
+
+### upload(path, domain)
+Uploads a file to AnonFiles
+
+Domain is the website domain id.
+```js
+var response = await upload(path, 0);
 ```
 
 ### download(id, targetDir)
@@ -29,25 +47,27 @@ Downloads a file from AnonFiles
 await download(id, './Downloads');
 ```
 
-### extractRawURL(id)
+### extractRawURL(id, domain)
 Extracts the raw download link for a file
+
+Domain is the website domain id.
 ```js
-extractRawURL(id);
+extractRawURL(id, 0);
 ```
 
 ### Example
 ```js
 import AnonFiles from 'anonfiles';
 
-var info = await AnonFiles.get('u1C0ebc4b0');
+var info = await AnonFiles.get('u1C0ebc4b0', 0);
 console.log(info);
 
-var response = await AnonFiles.upload('./file.txt');
+var response = await AnonFiles.upload('./file.txt', 0);
 console.log(response);
 
 await AnonFiles.download('u1C0ebc4b0', './Downloads/file.zip');
 
-var url = AnonFiles.extractRawURL('u1C0ebc4b0');
+var url = AnonFiles.extractRawURL('u1C0ebc4b0', 0);
 console.log(url);
 ```
 
