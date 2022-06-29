@@ -2,15 +2,17 @@ import fs from 'fs';
 import fetch from 'node-fetch';
 import FormData from 'form-data';
 
-async function get(id) {
-    const response = await fetch(`https://api.anonfiles.com/v2/file/${id}/info`);
+const domains = ['anonfiles.com', 'filechan.org', 'hotfile.io', 'letsupload.cc', 'lolabits.se', 'megaupload.nz', 'myfile.is', 'rapidshare.nu', 'share-online.is', 'upvid.cc', 'vshare.is'];
+
+async function get(id, domain) {
+    const response = await fetch(`https://api.{domains[domain ?? 0]}/v2/file/${id}/info`);
     return await response.json();
 }
 
-async function upload(path) {
+async function upload(path, domain) {
     let data = new FormData();
     data.append('file', fs.createReadStream(path));
-    const response = await fetch('https://api.anonfiles.com/upload', {
+    const response = await fetch('https://api.{domains[domain ?? 0]}/upload', {
         method: 'POST',
         body: data
     });
@@ -18,7 +20,7 @@ async function upload(path) {
 }
 
 async function download(fileURL, path) {
-    if (!/((http|https):\/\/)(www.)?anonfiles\.com\b([-a-zA-Z0-9@:%._\+~#?&//=]*)/.test(fileURL)) {
+    if (!/((http|https):\/\/)(www.)?(anonfiles\.com|filechan\.org|hotfile\.io|letsupload\.cc|lolabits\.se|megaupload\.nz|myfile\.is|rapidshare\.nu|share-online\.is|upvid\.cc|vshare\.is)\b([-a-zA-Z0-9@:%._\+~#?&//=]*)/.test(fileURL)) {
         fileURL = (await get(fileURL))['data']['file']['url']['full'];
     }
     const response = await fetch(fileURL);
