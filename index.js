@@ -12,7 +12,7 @@ async function get(id, domain) {
 async function upload(path, domain) {
     let data = new FormData();
     data.append('file', fs.createReadStream(path));
-    const response = await fetch('https://api.${domains[domain ?? 0]}/upload', {
+    const response = await fetch(`https://api.${domains[domain ?? 0]}/upload`, {
         method: 'POST',
         body: data
     });
