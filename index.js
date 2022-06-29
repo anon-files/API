@@ -5,14 +5,14 @@ import FormData from 'form-data';
 const domains = ['anonfiles.com', 'filechan.org', 'hotfile.io', 'letsupload.cc', 'lolabits.se', 'megaupload.nz', 'myfile.is', 'rapidshare.nu', 'share-online.is', 'upvid.cc', 'vshare.is'];
 
 async function get(id, domain) {
-    const response = await fetch(`https://api.{domains[domain ?? 0]}/v2/file/${id}/info`);
+    const response = await fetch(`https://api.${domains[domain ?? 0]}/v2/file/${id}/info`);
     return await response.json();
 }
 
 async function upload(path, domain) {
     let data = new FormData();
     data.append('file', fs.createReadStream(path));
-    const response = await fetch('https://api.{domains[domain ?? 0]}/upload', {
+    const response = await fetch('https://api.${domains[domain ?? 0]}/upload', {
         method: 'POST',
         body: data
     });
