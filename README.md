@@ -33,6 +33,14 @@ Domain is the website domain id.
 var info = await get(id, 0);
 ```
 
+### uploadBlob(blob, name, domain)
+Uploads a blob to AnonFiles
+
+Domain is the website domain id.
+```js
+var response = await uploadBlob(blob, name, 0);
+```
+
 ### upload(path, domain)
 Uploads a file to AnonFiles
 
@@ -41,10 +49,10 @@ Domain is the website domain id.
 var response = await upload(path, 0);
 ```
 
-### download(id, targetDir)
+### download(id, domain, targetDir)
 Downloads a file from AnonFiles
 ```js
-await download(id, './Downloads');
+await download(id, 0, './Downloads');
 ```
 
 ### extractRawURL(id, domain)
@@ -52,7 +60,15 @@ Extracts the raw download link for a file
 
 Domain is the website domain id.
 ```js
-extractRawURL(id, 0);
+var url = await extractRawURL(id, 0);
+```
+
+### extractFileName(id, domain)
+Returns the file name for a file.
+
+Domain is the website domain id.
+```js
+var name = await extractFileName(id, 0);
 ```
 
 ### Example
@@ -65,17 +81,20 @@ console.log(info);
 var response = await AnonFiles.upload('./file.txt', 0);
 console.log(response);
 
-await AnonFiles.download('u1C0ebc4b0', './Downloads/file.zip');
+await AnonFiles.download('u1C0ebc4b0', 0, './Downloads/file.zip');
 
-var url = AnonFiles.extractRawURL('u1C0ebc4b0', 0);
+var url = await AnonFiles.extractRawURL('u1C0ebc4b0', 0);
 console.log(url);
+
+var fileName = await AnonFiles.extractFileName('u1C0ebc4b0', 0);
+console.log(fileName);
 ```
 
 ## License
 ```
 The MIT License (MIT)
 
-Copyright (c) 2022 anon-files.github.io developers
+Copyright (c) 2022-2023 anon-files.github.io developers
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
