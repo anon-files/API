@@ -1,6 +1,9 @@
 # AnonFiles API
 An unofficial JavaScript AnonFiles API wrapper.
 
+## Not Working as of August 2023
+In August 2023, AnonFiles has shut down so this API wrapper is no longer functional.
+
 ## Usage
 ```
 npm install anonfiles
